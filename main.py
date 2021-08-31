@@ -21,9 +21,9 @@ Bootstrap(app)
 
 ##CONNECT TO DB
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL_2")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL_2")
 # conn = psycopg2.connect(os.environ.get("DATABASE_URL_2"), sslmode='require')
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///blog.db"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///blog.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -95,7 +95,7 @@ class Comment(db.Model, Base):
 
 
 ##CREATE TABLE ONCE
-# db.create_all()
+db.create_all()
 
 
 def admin_only(function):
