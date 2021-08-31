@@ -218,14 +218,18 @@ def show_post(post_id):
         }
         all_comments.append(comment_dict)
     if request.method == "POST":
-        comment_to_save = Comment(
-            comment_text = form.comment.data,
-            author = current_user,
-            blog = requested_post
-        )
-        db.session.add(comment_to_save)
-        db.session.commit()
-        return redirect(url_for("show_post", post_id=requested_post.id))
+        if not current_user.is_authenticated:
+            flash("Please login or register to comment.")
+            return redirect(url_for("login"))
+        else:
+            comment_to_save = Comment(
+                comment_text = form.comment.data,
+                author = current_user,
+                blog = requested_post
+            )
+            db.session.add(comment_to_save)
+            db.session.commit()
+            return redirect(url_for("show_post", post_id=requested_post.id))
     return render_template("post.html", post=requested_post, logged_in=current_user.is_authenticated, admin=admin, form=form, comments=all_comments)
 
 
