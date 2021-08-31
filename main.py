@@ -95,7 +95,7 @@ class Comment(db.Model, Base):
 
 
 ##CREATE TABLE ONCE
-db.create_all()
+# db.create_all()
 
 
 def admin_only(function):
