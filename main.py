@@ -12,7 +12,8 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, cur
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 import os
-# import psycopg2
+import click
+from flask.cli import with_appcontext
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
@@ -95,7 +96,10 @@ class Comment(db.Model, Base):
 
 
 ##CREATE TABLE ONCE
-# db.create_all()
+@click.command(name="create_tables")
+@with_appcontext
+def create_tables():
+    db.create_all()
 
 
 def admin_only(function):
