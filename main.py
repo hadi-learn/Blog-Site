@@ -96,10 +96,10 @@ class Comment(db.Model, Base):
 
 
 ##CREATE TABLE ONCE
-@click.command(name="create_tables")
-@with_appcontext
-def create_tables():
-    db.create_all()
+# @click.command(name="create_tables")
+# @with_appcontext
+# def create_tables():
+db.create_all()
 
 
 def admin_only(function):
