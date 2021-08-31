@@ -99,7 +99,7 @@ class Comment(db.Model, Base):
 # @click.command(name="create_tables")
 # @with_appcontext
 # def create_tables():
-db.create_all()
+# db.create_all()
 
 
 def admin_only(function):
